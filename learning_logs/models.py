@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField 
 
 # Create your models here.
 
 
 class Topic(models.Model):
     """Um assunto sobre o qual o usuário está aprendendo"""
-    text = models.CharField(max_length=200)
+    text = RichTextField()
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -18,7 +19,7 @@ class Topic(models.Model):
 class Entry(models.Model):
     """Algo específico aprendido sobre um assunto."""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = RichTextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
