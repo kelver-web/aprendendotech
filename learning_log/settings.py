@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default': config('database_url', default=default_dburl, cast=dburl)
+    'default': config('database_url', default=default_dburl, cast=dburl),
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
@@ -141,3 +141,6 @@ BOOTSTRAP3 = {
 'include_jquery': True,
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
