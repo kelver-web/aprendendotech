@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
 import os
 from decouple import config, Csv
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     # Aplicações de terceiros
     'bootstrap3',
-    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -139,10 +139,8 @@ LOGIN_URL = '/users/login/'
 
 # Configurações para django-bootstrap3
 BOOTSTRAP3 = {
-'include_jquery': True,
+    'include_jquery': True,
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
